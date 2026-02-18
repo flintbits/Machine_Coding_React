@@ -1,0 +1,94 @@
+Senior-Level Interview Components (Must Know)
+1. Virtualized List / Infinite Scroll Table
+render 100k rows efficiently
+windowing + scroll tracking
+
+2. Transfer List (Dual List Box)
+what you’re building now
+selection + move + bulk actions
+
+3. Autocomplete / Typeahead Search
+debounce + async fetch + caching
+keyboard navigation (↑ ↓ Enter)
+
+4. Multi-Select Dropdown
+tags + remove + search inside dropdown
+
+5. Data Table Component
+sorting, filtering, pagination
+column resizing + sticky headers
+server-side integration
+
+6. Tree View / File Explorer
+recursive rendering
+expand/collapse + lazy load children
+
+7. Drag & Drop Kanban Board
+reorder within column + move across columns
+collision logic
+
+8. Carousel / Slider
+infinite loop + autoplay
+swipe gestures + accessibility
+
+9. Modal System / Dialog Manager
+stacking modals
+escape close + focus trap
+
+10. Toast Notification System
+queue + auto dismiss + pause on hover
+
+multiple positions
+
+🔥 Advanced / Very Senior Components
+11. Tabs + Lazy Mount + Unmount Strategy
+you already did this 🔥
+
+12. Accordion with Controlled/Uncontrolled Mode
+single open vs multiple open
+animations
+
+13. Stepper / Multi-Step Form Wizard
+validations per step
+resume progress
+
+14. Pagination Component (Google style)
+ellipsis logic
+page range calculation
+
+15. Image Lazy Loader
+IntersectionObserver + placeholder + fallback
+16. Rich Text Editor (Mini Notion)
+formatting + contenteditable + cursor handling
+
+17. Form Builder
+dynamic schema-driven forms
+reusable validation engine
+
+18. Scheduler / Calendar (Google Calendar lite)
+drag events, overlapping slots
+time grid calculations
+
+19. Rate Limiter / Task Scheduler UI
+concurrent task execution (async pool)
+
+20. Search + Filter Panel with Query Builder
+AND/OR filter logic
+nested conditions
+
+System Design Style UI Components
+21. Client-Side Router
+dynamic routes /projects/:id
+history API + nested routing
+
+22. State Management Mini Redux
+store + reducer + subscribe + middleware
+
+23. Event Bus System
+pub/sub + decoupled components
+
+24. Offline Sync Queue
+store actions offline, replay when online
+
+25. Permission-Based UI Renderer
+roles + feature flags + route protection
