@@ -58,6 +58,7 @@ page range calculation
 
 15. Image Lazy Loader
 IntersectionObserver + placeholder + fallback
+
 16. Rich Text Editor (Mini Notion)
 formatting + contenteditable + cursor handling
 

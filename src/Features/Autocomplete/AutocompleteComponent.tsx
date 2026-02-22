@@ -1,7 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import useDebounce from './useDebounce';
 
 type Props = {}
+
+type CacheData = {
+    data: any[],
+    timestamp: number;
+}
+
+const TTL = 5 * 60 * 1000
 
 export default function AutocompleteComponent({ }: Props) {
     const [query, setQuery] = useState<string>("");
@@ -10,6 +17,7 @@ export default function AutocompleteComponent({ }: Props) {
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
     const [activeIndex, setActiveIndex] = useState<number>(-1);
     const activeId = activeIndex >= 0 ? `fruit-option-${activeIndex}` : undefined
+    const cacheRef = useRef<Map<string, CacheData>>(new Map())
 
     const debouncedQuery = useDebounce(query, 700)
 
@@ -18,6 +26,22 @@ export default function AutocompleteComponent({ }: Props) {
         if (!debouncedQuery.trim()) {
             setProducts([]);
             return
+        }
+
+        const normalizedKey = debouncedQuery.trim().toLowerCase();
+        const cached = cacheRef.current.get(normalizedKey)
+
+
+        if (cached) {
+            const isFresh = Date.now() - cached.timestamp < TTL
+
+            if (isFresh) {
+                setProducts(cached.data)
+                console.log("Cache hit")
+                return
+            } else {
+                cacheRef.current.delete(normalizedKey)
+            }
         }
 
         //Abort controler to stop the client side background fetch on effect unmount
@@ -31,6 +55,12 @@ export default function AutocompleteComponent({ }: Props) {
                 const data = await res.json();
                 setProducts(data)
                 setShowDropDown(true)
+
+                cacheRef.current.set(normalizedKey, {
+                    data,
+                    timestamp: Date.now()
+                })
+                console.log("API hit")
             } catch (e: any) {
                 //skip the error if its comming from Abort Controller
                 if (e.name === "AbortError") return
